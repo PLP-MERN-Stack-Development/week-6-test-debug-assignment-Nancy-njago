@@ -1,15 +1,12 @@
-// jest.config.js - Root Jest configuration file
-
 module.exports = {
-  // Base configuration for all tests
   projects: [
     // Server-side tests configuration
     {
       displayName: 'server',
-      testEnvironment: 'node',
+      testEnvironment: 'jsdom', // Standardized to 'jsdom'
       testMatch: ['<rootDir>/server/tests/**/*.test.js'],
       moduleFileExtensions: ['js', 'json', 'node'],
-      setupFilesAfterEnv: ['<rootDir>/server/tests/setup.js'],
+      setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
       coverageDirectory: '<rootDir>/coverage/server',
       collectCoverageFrom: [
         'server/src/**/*.js',
@@ -21,7 +18,7 @@ module.exports = {
     // Client-side tests configuration
     {
       displayName: 'client',
-      testEnvironment: 'jsdom',
+      testEnvironment: 'jsdom', // Kept as 'jsdom'
       testMatch: ['<rootDir>/client/src/**/*.test.{js,jsx}'],
       moduleFileExtensions: ['js', 'jsx', 'json'],
       moduleNameMapper: {
@@ -42,6 +39,7 @@ module.exports = {
   ],
   
   // Global configuration
+  testEnvironment: 'jsdom', // Added global fallback
   verbose: true,
   collectCoverage: true,
   coverageReporters: ['text', 'lcov', 'clover', 'html'],
@@ -54,4 +52,4 @@ module.exports = {
     },
   },
   testTimeout: 10000,
-}; 
+};
